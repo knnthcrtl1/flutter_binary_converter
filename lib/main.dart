@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 class Home extends StatelessWidget {
   // const Home({super.key});
 
-  final leftSection = new Expanded(
+  final leftSection = Expanded(
       flex: 1,
       child: Container(
           padding: const EdgeInsets.all(16),
@@ -30,23 +30,39 @@ class Home extends StatelessWidget {
             children: [Text('From'), DropdownButtonApp()],
           )));
 
-  final rightSection = new Expanded(
+  final rightSection = Expanded(
       child: Container(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [Text('To'), DropdownButtonApp()],
           )));
+  final textFieldSection = Expanded(
+      child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Enter binary number',
+                  ),
+                )
+              ])));
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Binary Converter')),
-      body: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[leftSection, rightSection],
-        ),
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[leftSection, rightSection],
+          ),
+          textFieldSection
+        ],
       ),
     );
   }

@@ -21,7 +21,7 @@ class _DropdownButtonAppState extends State<DropdownButtonApp> {
       // icon: const Icon(Icons.down_arrow),
       isExpanded: true,
       elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
+      // style: const TextStyle(color: Colors.deepPurple),
       underline: Container(
         height: 2,
         color: Colors.deepPurpleAccent,
