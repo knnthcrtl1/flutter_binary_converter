@@ -2,20 +2,31 @@ import 'package:flutter/material.dart';
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
-void main() => runApp(const DropdownButtonApp());
+void main() => runApp(const DropdownButtonApp(
+      binaryList: [],
+    ));
 
 class DropdownButtonApp extends StatefulWidget {
-  const DropdownButtonApp({super.key});
+  final List binaryList;
+  const DropdownButtonApp({super.key, required this.binaryList});
 
   @override
   State<DropdownButtonApp> createState() => _DropdownButtonAppState();
 }
 
 class _DropdownButtonAppState extends State<DropdownButtonApp> {
-  String dropdownValue = list.first;
+  late String dropdownValue;
+
+  @override
+  void initState() {
+    super.initState();
+    dropdownValue = widget.binaryList.first;
+  }
 
   @override
   Widget build(BuildContext context) {
+    List binaryList = widget.binaryList.isNotEmpty ? widget.binaryList : [];
+
     return DropdownButton<String>(
       value: dropdownValue,
       // icon: const Icon(Icons.down_arrow),
@@ -32,7 +43,7 @@ class _DropdownButtonAppState extends State<DropdownButtonApp> {
           dropdownValue = value!;
         });
       },
-      items: list.map<DropdownMenuItem<String>>((String value) {
+      items: binaryList.map<DropdownMenuItem<String>>((value) {
         return DropdownMenuItem<String>(
           value: value,
           child: Text(value),
