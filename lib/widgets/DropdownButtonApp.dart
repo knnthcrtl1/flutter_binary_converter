@@ -15,19 +15,22 @@ class DropdownButtonApp extends StatefulWidget {
 }
 
 class _DropdownButtonAppState extends State<DropdownButtonApp> {
-  late String dropdownValue;
+  // late dynamic dropdownValue;
 
   @override
   void initState() {
     super.initState();
-    dropdownValue = widget.binaryList.first;
+    // dropdownValue = widget.binaryList.first?['name'];
+
+    print(widget.binaryList.length);
   }
 
   @override
   Widget build(BuildContext context) {
     List binaryList = widget.binaryList.isNotEmpty ? widget.binaryList : [];
+    var dropdownValue = binaryList.first?['id'];
 
-    return DropdownButton<String>(
+    return DropdownButton(
       value: dropdownValue,
       // icon: const Icon(Icons.down_arrow),
       isExpanded: true,
@@ -37,16 +40,17 @@ class _DropdownButtonAppState extends State<DropdownButtonApp> {
         height: 2,
         color: Colors.deepPurpleAccent,
       ),
-      onChanged: (String? value) {
+      onChanged: (value) {
+        print(value);
         // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
+        // setState(() {
+        //   dropdownValue = value!;
+        // });
       },
-      items: binaryList.map<DropdownMenuItem<String>>((value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
+      items: binaryList.map((value) {
+        return DropdownMenuItem(
+          value: value['id'],
+          child: Text(value['name']),
         );
       }).toList(),
     );

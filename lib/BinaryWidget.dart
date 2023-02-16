@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import './widgets/DropdownButtonApp.dart';
 
+const List<dynamic> list = <dynamic>[
+  {'id': 0, 'name': 'a'},
+  {'id': 1, 'name': 'b'},
+  {'id': 2, 'name': 'c'},
+  {'id': 3, 'name': 'd'},
+];
+
 void main() => runApp(const BinaryWidget());
 
 class BinaryWidget extends StatefulWidget {
@@ -85,6 +92,13 @@ class _BinaryState extends State<BinaryWidget> {
                   ),
                 ),
               ])));
+
+  var firstPicker = 0;
+  var secondPicker = 0;
+
+  void handleItemPicker() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {

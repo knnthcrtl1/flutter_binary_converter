@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'BinaryWidget.dart';
 
-const List<String> list = <String>['a', 'b', 'c', 'd'];
-
 void main() {
   runApp(const MyApp());
 }
