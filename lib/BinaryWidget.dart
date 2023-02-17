@@ -21,94 +21,18 @@ class _BinaryState extends State<BinaryWidget> {
   var firstDropdownVal;
   var secondDropdownVal;
 
-  final leftSection = Expanded(
-      flex: 1,
-      child: Container(
-          padding: const EdgeInsets.fromLTRB(16, 16, 6, 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('From'),
-              DropDownButtonApp(
-                  binaryList: list,
-                  callbackFunction: (test) {
-                    print(test);
-                  })
-            ],
-          )));
+  @override
+  void initState() {
+    super.initState();
+  }
 
-  final rightSection = Expanded(
-      child: Container(
-          padding: const EdgeInsets.fromLTRB(6, 16, 16, 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('From'),
-              DropDownButtonApp(
-                  binaryList: list, callbackFunction: (test) => {print(test)})
-            ],
-          )));
-  final textFieldSection = Expanded(
-      child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter binary number',
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Container(
-                    // width: double.infinity,
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.blueAccent,
-                        textStyle: const TextStyle(fontSize: 16),
-                      ),
-                      onPressed: () {},
-                      child: const Text(
-                        'Submit',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Container(
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.blueAccent,
-                          textStyle: const TextStyle(fontSize: 16),
-                        ),
-                        onPressed: () {},
-                        child: const Text(
-                          'Reset',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    )
-                  ],
-                )),
-                const SizedBox(height: 12),
-                const Text('Output'),
-                const SizedBox(height: 6),
-                const TextField(
-                  readOnly: true,
-                  enabled: false,
-                  enableInteractiveSelection: false,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Output',
-                  ),
-                ),
-              ])));
+  void handleDropdown(dynamic val) {
+    setState(() {
+      firstDropdownVal = val;
+    });
 
-  var firstPicker = 0;
-  var secondPicker = 0;
+    print(firstDropdownVal);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,9 +40,91 @@ class _BinaryState extends State<BinaryWidget> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[leftSection, rightSection],
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Container(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 6, 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('From'),
+                      DropDownButtonApp(
+                          binaryList: list, callbackFunction: handleDropdown)
+                    ],
+                  )),
+            ),
+            Expanded(
+                child: Container(
+                    padding: const EdgeInsets.fromLTRB(6, 16, 16, 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('From'),
+                        DropDownButtonApp(
+                            binaryList: list, callbackFunction: handleDropdown)
+                      ],
+                    )))
+          ],
         ),
-        textFieldSection
+        Expanded(
+            child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      const TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Enter binary number',
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Container(
+                          // width: double.infinity,
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor: Colors.blueAccent,
+                              textStyle: const TextStyle(fontSize: 16),
+                            ),
+                            onPressed: () {},
+                            child: const Text(
+                              'Submit',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Container(
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.blueAccent,
+                                textStyle: const TextStyle(fontSize: 16),
+                              ),
+                              onPressed: () {},
+                              child: const Text(
+                                'Reset',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          )
+                        ],
+                      )),
+                      const SizedBox(height: 12),
+                      const Text('Output'),
+                      const SizedBox(height: 6),
+                      const TextField(
+                        readOnly: true,
+                        enabled: false,
+                        enableInteractiveSelection: false,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Output',
+                        ),
+                      ),
+                    ])))
       ],
     );
   }

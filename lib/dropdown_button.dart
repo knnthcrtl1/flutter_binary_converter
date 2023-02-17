@@ -4,14 +4,14 @@ const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
 class DropDownButtonApp extends StatelessWidget {
   final List binaryList;
-  final dropdownValue;
+  final Function? handleDropdown;
   final Function? callbackFunction;
 
   const DropDownButtonApp(
       {Key? key,
       required this.binaryList,
       required this.callbackFunction,
-      this.dropdownValue})
+      this.handleDropdown})
       : super(key: key);
 
   @override
