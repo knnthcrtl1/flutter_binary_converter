@@ -1,5 +1,5 @@
+import 'package:binary_converter/dropdown_button.dart';
 import 'package:flutter/material.dart';
-import './widgets/DropdownButtonApp.dart';
 
 const List<dynamic> list = <dynamic>[
   {'id': 0, 'name': 'a'},
@@ -18,13 +18,23 @@ class BinaryWidget extends StatefulWidget {
 }
 
 class _BinaryState extends State<BinaryWidget> {
+  var firstDropdownVal;
+  var secondDropdownVal;
+
   final leftSection = Expanded(
       flex: 1,
       child: Container(
           padding: const EdgeInsets.fromLTRB(16, 16, 6, 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [Text('From'), DropdownButtonApp(binaryList: list)],
+            children: [
+              const Text('From'),
+              DropDownButtonApp(
+                  binaryList: list,
+                  callbackFunction: (test) {
+                    print(test);
+                  })
+            ],
           )));
 
   final rightSection = Expanded(
@@ -32,7 +42,11 @@ class _BinaryState extends State<BinaryWidget> {
           padding: const EdgeInsets.fromLTRB(6, 16, 16, 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [Text('To'), DropdownButtonApp(binaryList: list)],
+            children: [
+              const Text('From'),
+              DropDownButtonApp(
+                  binaryList: list, callbackFunction: (test) => {print(test)})
+            ],
           )));
   final textFieldSection = Expanded(
       child: Container(
@@ -95,10 +109,6 @@ class _BinaryState extends State<BinaryWidget> {
 
   var firstPicker = 0;
   var secondPicker = 0;
-
-  void handleItemPicker() {
-    setState(() {});
-  }
 
   @override
   Widget build(BuildContext context) {
