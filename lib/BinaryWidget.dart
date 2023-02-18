@@ -26,14 +26,6 @@ class _BinaryState extends State<BinaryWidget> {
     super.initState();
   }
 
-  void handleDropdown(dynamic val) {
-    setState(() {
-      firstDropdownVal = val;
-    });
-
-    print(firstDropdownVal);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -50,7 +42,12 @@ class _BinaryState extends State<BinaryWidget> {
                     children: [
                       const Text('From'),
                       DropDownButtonApp(
-                          binaryList: list, callbackFunction: handleDropdown)
+                          binaryList: list,
+                          callbackFunction: (val) => {
+                                setState(() {
+                                  firstDropdownVal = val;
+                                })
+                              })
                     ],
                   )),
             ),
@@ -62,7 +59,13 @@ class _BinaryState extends State<BinaryWidget> {
                       children: [
                         const Text('From'),
                         DropDownButtonApp(
-                            binaryList: list, callbackFunction: handleDropdown)
+                            binaryList: list,
+                            value: firstDropdownVal,
+                            callbackFunction: (val) => {
+                                  setState(() {
+                                    secondDropdownVal = val;
+                                  })
+                                })
                       ],
                     )))
           ],

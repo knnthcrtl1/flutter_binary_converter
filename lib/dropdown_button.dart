@@ -6,11 +6,13 @@ class DropDownButtonApp extends StatelessWidget {
   final List binaryList;
   final Function? handleDropdown;
   final Function? callbackFunction;
+  final dynamic value;
 
   const DropDownButtonApp(
       {Key? key,
       required this.binaryList,
       required this.callbackFunction,
+      required this.value,
       this.handleDropdown})
       : super(key: key);
 
