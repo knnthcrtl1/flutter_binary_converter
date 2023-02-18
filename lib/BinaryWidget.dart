@@ -43,6 +43,7 @@ class _BinaryState extends State<BinaryWidget> {
                       const Text('From'),
                       DropDownButtonApp(
                           binaryList: list,
+                          value: firstDropdownVal,
                           callbackFunction: (val) => {
                                 setState(() {
                                   firstDropdownVal = val;
@@ -60,7 +61,7 @@ class _BinaryState extends State<BinaryWidget> {
                         const Text('From'),
                         DropDownButtonApp(
                             binaryList: list,
-                            value: firstDropdownVal,
+                            value: secondDropdownVal,
                             callbackFunction: (val) => {
                                   setState(() {
                                     secondDropdownVal = val;

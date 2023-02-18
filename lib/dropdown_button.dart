@@ -18,10 +18,15 @@ class DropDownButtonApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var initialValue = binaryList.first['id'];
+    var result = value != null
+        ? binaryList.where((el) => el['id'] == value).first['id']
+        : initialValue;
+
     return DropdownButton(
-      value: binaryList.first?['id'],
       // icon: const Icon(Icons.down_arrow),
       // style: const TextStyle(color: Colors.deepPurple),
+      value: result,
       isExpanded: true,
       elevation: 16,
       underline: Container(
