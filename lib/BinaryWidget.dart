@@ -20,10 +20,35 @@ class BinaryWidget extends StatefulWidget {
 class _BinaryState extends State<BinaryWidget> {
   var firstDropdownVal;
   var secondDropdownVal;
+  var binaryNumber;
+
+  late TextEditingController _controller;
+  late TextInputAction _submitController;
 
   @override
   void initState() {
     super.initState();
+    _controller = TextEditingController();
+    _controller.addListener(_printLatestValue);
+
+    // _submitController.addListener(_printLatestValue);
+  }
+
+  void _handleSubmitField() {
+    print(binaryNumber);
+  }
+
+  void _printLatestValue() {
+    setState(() {
+      binaryNumber = _controller.text;
+    });
+    // print('Second text field: ${_controller.text}');
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -73,11 +98,15 @@ class _BinaryState extends State<BinaryWidget> {
         ),
         Expanded(
             child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      const TextField(
+                      TextField(
+                        onSubmitted: (text) {
+                          _handleSubmitField();
+                        },
+                        controller: _controller,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Enter binary number',
@@ -101,17 +130,15 @@ class _BinaryState extends State<BinaryWidget> {
                             ),
                           ),
                           const SizedBox(width: 12),
-                          Container(
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                backgroundColor: Colors.blueAccent,
-                                textStyle: const TextStyle(fontSize: 16),
-                              ),
-                              onPressed: () {},
-                              child: const Text(
-                                'Reset',
-                                style: TextStyle(color: Colors.white),
-                              ),
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor: Colors.blueAccent,
+                              textStyle: const TextStyle(fontSize: 16),
+                            ),
+                            onPressed: () {},
+                            child: const Text(
+                              'Reset',
+                              style: TextStyle(color: Colors.white),
                             ),
                           )
                         ],
