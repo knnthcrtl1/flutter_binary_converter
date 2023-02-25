@@ -1,4 +1,5 @@
 import 'package:binary_converter/dropdown_button.dart';
+import 'binary_class.dart';
 import 'package:flutter/material.dart';
 
 const List<dynamic> list = <dynamic>[
@@ -18,9 +19,9 @@ class BinaryWidget extends StatefulWidget {
 }
 
 class _BinaryState extends State<BinaryWidget> {
-  var firstDropdownVal;
-  var secondDropdownVal;
-  var binaryNumber;
+  dynamic firstDropdownVal;
+  dynamic secondDropdownVal;
+  late String binaryNumber;
 
   late TextEditingController _controller;
   late TextInputAction _submitController;
@@ -30,19 +31,20 @@ class _BinaryState extends State<BinaryWidget> {
     super.initState();
     _controller = TextEditingController();
     _controller.addListener(_printLatestValue);
-
-    // _submitController.addListener(_printLatestValue);
   }
 
   void _handleSubmitField() {
-    print(binaryNumber);
+    // if (binaryNumber.isNotEmpty) {
+    //   var result = Binary().useBinaryConverter(
+    //       binaryNumber, firstDropdownVal, secondDropdownVal);
+    //   print(result);
+    // }
   }
 
   void _printLatestValue() {
     setState(() {
       binaryNumber = _controller.text;
     });
-    // print('Second text field: ${_controller.text}');
   }
 
   @override
@@ -123,7 +125,9 @@ class _BinaryState extends State<BinaryWidget> {
                               backgroundColor: Colors.blueAccent,
                               textStyle: const TextStyle(fontSize: 16),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              _handleSubmitField();
+                            },
                             child: const Text(
                               'Submit',
                               style: TextStyle(color: Colors.white),
