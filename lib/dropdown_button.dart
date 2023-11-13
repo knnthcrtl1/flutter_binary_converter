@@ -7,12 +7,14 @@ class DropDownButtonApp extends StatelessWidget {
   final Function? handleDropdown;
   final Function? callbackFunction;
   final dynamic value;
+  final dynamic error;
 
   const DropDownButtonApp(
       {Key? key,
       required this.binaryList,
       required this.callbackFunction,
       required this.value,
+      this.error,
       this.handleDropdown})
       : super(key: key);
 
@@ -24,15 +26,11 @@ class DropDownButtonApp extends StatelessWidget {
         : initialValue;
 
     return DropdownButton(
-      // icon: const Icon(Icons.down_arrow),
-      // style: const TextStyle(color: Colors.deepPurple),
+      style: const TextStyle(color: Colors.deepPurple),
       value: result,
       isExpanded: true,
       elevation: 16,
-      underline: Container(
-        height: 2,
-        color: Colors.deepPurpleAccent,
-      ),
+      underline: Container(height: 2),
       onChanged: (value) => callbackFunction!(value),
       items: binaryList.map((value) {
         return DropdownMenuItem(

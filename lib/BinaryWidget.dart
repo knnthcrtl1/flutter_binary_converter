@@ -71,6 +71,7 @@ class _BinaryState extends State<BinaryWidget> {
                       DropDownButtonApp(
                           binaryList: list,
                           value: firstDropdownVal,
+                          error: false,
                           callbackFunction: (val) => {
                                 setState(() {
                                   firstDropdownVal = val;
@@ -89,6 +90,7 @@ class _BinaryState extends State<BinaryWidget> {
                         DropDownButtonApp(
                             binaryList: list,
                             value: secondDropdownVal,
+                            error: firstDropdownVal == secondDropdownVal,
                             callbackFunction: (val) => {
                                   setState(() {
                                     secondDropdownVal = val;
